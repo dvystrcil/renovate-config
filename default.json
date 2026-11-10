@@ -1,0 +1,16 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Shared Renovate preset for dvystrcil/*. Repos extend it with \"local>dvystrcil/renovate-config\"; Renovate's onboarding suggests it for new repos.",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "packageRules": [
+    {
+      "description": "D-042 (dvystrcil/homelab architecture/ways-of-working.md): our own actions follow their semver tag (e.g. @v1) so a fix ships by moving the tag; third-party actions stay digest-pinned. Must come after helpers:pinGitHubActionDigests, which it overrides.",
+      "matchDepTypes": ["action", "workflow"],
+      "matchPackageNames": ["dvystrcil/**"],
+      "pinDigests": false
+    }
+  ]
+}
