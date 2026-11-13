@@ -5,6 +5,7 @@
     "config:recommended",
     "helpers:pinGitHubActionDigests"
   ],
+  "dependencyDashboardLabels": ["dependency-dashboard"],
   "packageRules": [
     {
       "description": "D-042 (dvystrcil/homelab architecture/ways-of-working.md): our own actions follow their semver tag (e.g. @v1) so a fix ships by moving the tag; third-party actions stay digest-pinned. Must come after helpers:pinGitHubActionDigests, which it overrides.",
