@@ -1,0 +1,21 @@
+name: preset-guard
+# The shared preset never turns on automerge (tests/test_no_automerge.py).
+# Every repo that extends it would inherit the rule on its next Renovate
+# run, including repos where a merge is a deployment. Hermetic: Python
+# stdlib, no secrets, no network.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  no-automerge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: The preset sets no automerge
+        run: |
+          python3 -m unittest discover -s tests -v 2>&1 | tee guard.out
+          grep -q '^OK$' guard.out
